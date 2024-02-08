@@ -30,9 +30,4 @@ const items = ref([
 .menu-icon {
   margin-right: 8px;
 }
-nav {
-  max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
-}
 </style>
