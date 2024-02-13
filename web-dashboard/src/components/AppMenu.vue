@@ -1,5 +1,6 @@
 <script setup lang="ts">
 
+import Button from "primevue/button";
 import Menubar from "primevue/menubar";
 import { ref } from "vue";
 
@@ -18,9 +19,16 @@ const items = ref([
 
 <template>
   <nav>
-    <Menubar :model="items">
+    <!-- <Button icon="home" class="">
+      Início
+
+      <template #icon>
+        <vue-feather class="menu-icon" :type="class"></vue-feather>
+      </template>
+    </Button> -->
+    <Menubar :model="items" breakpoint="20px" >
       <template #itemicon="{ item }">
-        <vue-feather class="menu-icon" :type="item.icon"></vue-feather>
+        <vue-feather class="menu-icon" :type="item.icon" />
       </template>
     </Menubar>
   </nav>

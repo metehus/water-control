@@ -3,7 +3,7 @@ import {useConnectionStore} from "@/stores/connection";
 import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
-import {computed, ref} from "vue";
+import {computed, ref, onUnmounted} from "vue";
 import { storeToRefs } from "pinia";
 
 const userValue = ref('');

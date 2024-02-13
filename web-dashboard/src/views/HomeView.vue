@@ -1,45 +1,67 @@
 <script setup lang="ts">
 import Card from "primevue/card";
 import ProgressSpinner from "primevue/ProgressSpinner";
-import {useConnectionStore} from "@/stores/connection";
+import { useConnectionStore } from "@/stores/connection";
 import ConnectionDialog from "@/components/ConnectionDialog.vue";
+import SensorsCard from "@/components/SensorsCard.vue";
+import WaterLevelVue from "@/components/WaterLevel.vue";
+import ButtonsCard from "@/components/ButtonsCard.vue";
 
 const store = useConnectionStore()
 </script>
 
 <template>
-  <Card class="card">
-    <template #content>
-      <div v-if="store.connected" >
-        conectado!
+  <div class="mt-3 mx-4">
+    <div v-if="store.connected && store.deviceState !== null" class="w-full">
+      <Card class="card">
+        <template #content>
+          <div class="flex justify-between items-center">
+            <SensorsCard />
+            <WaterLevelVue />
+          </div>
+        </template>
+      </Card>
 
-        <p class="m-0">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-          quas!
-        </p>
-      </div>
-      <div v-else class="spinner-card">
-        <ProgressSpinner class="spinner" />
-        <ConnectionDialog />
-      </div>
-    </template>
-  </Card>
+      <Card class="card mt-4">
+        <template #content>
+          <div class="flex justify-between items-center">
+            <ButtonsCard />
+          </div>
+        </template>
+      </Card>
+    </div>
+    <div v-else class="spinner-card w-full">
+      <Card class="card">
+        <template #content>
+
+          <div class="spinner-card">
+            <ProgressSpinner class="spinner" />
+            <ConnectionDialog />
+          </div>
+        </template>
+      </Card>
+
+    </div>
+  </div>
 </template>
 
 <style>
 .card {
-  margin-top: 20px;
   border: 1px solid #ddd;
+  width: 100%;
 }
+
 .spinner-card {
   display: flex;
   width: 100%;
   align-items: center;
 }
+
 .spinner {
   width: 40px;
   height: auto;
 }
+
 .spinner circle {
   stroke: black;
   animation: p-progress-spinner-dash 1.5s ease-in-out infinite
