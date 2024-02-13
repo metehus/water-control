@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Card from "primevue/card";
-import ProgressSpinner from "primevue/ProgressSpinner";
+import ProgressSpinner from "primevue/progressspinner";
 import { useConnectionStore } from "@/stores/connection";
 import ConnectionDialog from "@/components/ConnectionDialog.vue";
 import SensorsCard from "@/components/SensorsCard.vue";

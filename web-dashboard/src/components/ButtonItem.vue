@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useConnectionStore } from '@/stores/connection';
-import ProgressSpinner from 'primevue/ProgressSpinner';
+import ProgressSpinner from 'primevue/progressspinner';
 import InputSwitch from 'primevue/inputswitch';
 import { computed, ref, watch, watchEffect } from 'vue';
 
