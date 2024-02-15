@@ -16,8 +16,11 @@
 #include "keys.h"
 
 #define HOSTNAME "Controle-Bombas"
-#define SEND_INTERVAL 1000
+#define SEND_INTERVAL 10000
+#define SEND_INTERVAL_ACTIVE 1000
+#define ACK_DURATION 60000
 
+#define c_long const long
 
 class Network {
 public:
@@ -34,6 +37,8 @@ public:
 
     // std::vector<NetworkCallback*> callbacks;
     NetworkCallback buttonCallback{};
+
+    u_long lastAckTime = 0;
 
 
     Preferences networkPreferences;

@@ -121,6 +121,7 @@ void Network::connectMqtt() {
             mqttClient.subscribe(MQTT_TOPIC_SET_BUTTON_VALUE);
             mqttClient.subscribe(MQTT_TOPIC_SET_WATER_PREFS);
             mqttClient.subscribe(MQTT_TOPIC_SET_PUMP_SCHEDULE_PREFS);
+            mqttClient.subscribe(MQTT_TOPIC_ACK);
 
             lastMqttReconnectAttempt = 0;
         }
@@ -145,12 +146,15 @@ void Network::loop() {
         this->connect();
     }
 
+    const bool ackActive = (millis() - this->lastAckTime) < ACK_DURATION;
+    const u_long sendInterval = ackActive ? SEND_INTERVAL_ACTIVE : SEND_INTERVAL;
     if (
         mqttClient.connected() &&
         displayState->lastUpdate != lastDisplayStateUpdate &&
-        millis() - lastSentTime > SEND_INTERVAL
+        millis() - lastSentTime > sendInterval
     ) {
-        Serial.println("State update");
+        Serial.print("----------- State update. Ack active: ");
+        Serial.println(ackActive ? "true" : "false");
         lastDisplayStateUpdate = displayState->lastUpdate;
         lastSentTime = displayState->lastUpdate;
         sendState();
@@ -171,6 +175,8 @@ void Network::sendState() {
     message += "&pActiveLvl=" + String(displayState->pumpActiveLevel);
     message += "&pActive=" + String(displayState->pumpActive ? "true" : "false");
     message += "&lastPumpActiveTime=" + String(displayState->lastPumpActiveTime);
+    message += "&pSchMinH=" + String(displayState->pumpScheduleMinHour);
+    message += "&pSchMaxH=" + String(displayState->pumpScheduleMaxHour);
 
     for (auto button : displayState->buttons) {
         message += "&button" + String(button->index) + "=" + (button->active ? "true" : "false");
@@ -179,7 +185,6 @@ void Network::sendState() {
     bool result = this->mqttClient.publish("weatherLite2/state", message.c_str());
     Serial.printf("Publishing mqtt state: %s\n", result ? "true" : "false");
 }
-
 
 void Network::connect() {
     // callback(*this);
@@ -245,7 +250,9 @@ void Network::mqttCallback(String topic, const byte* payload, unsigned int lengt
     Serial.println(message[0]);
     Serial.println(message[2]);
 
-    if (topic == MQTT_TOPIC_SET_BUTTON_VALUE) {
+    if (topic == MQTT_TOPIC_ACK) {
+        this->lastAckTime = millis();
+    } else if (topic == MQTT_TOPIC_SET_BUTTON_VALUE) {
         uint8_t buttonIndex = String(message[0]).toInt();
         bool value = message.charAt(2) == 't';
         // bool value = true;
@@ -357,8 +364,6 @@ void Network::handlePumpSchedulePrefCallback(const String& message) {
 
     sensorsPreferences.end();
 }
-
-
 
 void Network::setButtonCallback(void (*cb)(uint8_t buttonIndex, bool value)) {
     buttonCallback = cb;

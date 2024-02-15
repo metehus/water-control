@@ -16,6 +16,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ace616a8-f42c-4ecb-90c7-f604debfaffe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/display_state.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/display_state.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keys.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/keys.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/network.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/network.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/network.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sensors.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sensors.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +41,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPAddress.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/USBCDC.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/WString.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h" root0="FORCE_HIGHLIGHTING" />
@@ -43,24 +51,28 @@
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/task.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/port/xtensa/include/freertos/portmacro.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include/esp_log.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/newlib/platform_include/time.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/nvs_flash/include/nvs.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/lib/gcc/xtensa-esp32-elf/8.4.0/include/stddef.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/lib/gcc/xtensa-esp32-elf/8.4.0/include/stddef.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/c++/8.4.0/bits/basic_string.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/string.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/string.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/sys/_stdint.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/sys/types.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/time.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/include/wchar.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/.platformio/packages/toolchain-xtensa-esp32@8.4.0+2021r2-patch5/xtensa-esp32-elf/sys-include/sys/types.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/.pio/libdeps/esp-wrover-kit/PubSubClient/src/PubSubClient.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/.pio/libdeps/esp-wrover-kit/PubSubClient/src/PubSubClient.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.pio/libdeps/esp-wrover-kit/PubSubClient/src/PubSubClient.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.pio/libdeps/esp-wrover-kit/PubSubClient/src/PubSubClient.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.pio/libdeps/esp32dev/TFT_eSPI/TFT_eSPI.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/button.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/display.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/display.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/display.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/display_pinout.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/keys.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/keys.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/network.h" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/sensors.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/network.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/sensors.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/sensors.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PlatformioLocalSettings">
@@ -104,28 +116,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "PlatformIO.PlatformIO.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.sync",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;PlatformIO.PlatformIO.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="dashboard" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
     </configuration>
@@ -210,6 +227,8 @@
       <workItem from="1707087274427" duration="2884000" />
       <workItem from="1707271331171" duration="5552000" />
       <workItem from="1707849822673" duration="616000" />
+      <workItem from="1707955416184" duration="650000" />
+      <workItem from="1707956373954" duration="5061000" />
     </task>
     <servers />
   </component>

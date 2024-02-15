@@ -2,12 +2,11 @@
 // Created by methi on 28/11/2023.
 //
 
-#include "sensors.h"
-
-#include <keys.h>
-
-#include "utils.h"
 #include <Wire.h>
+#include "time.h"
+#include "sensors.h"
+#include "keys.h"
+#include "utils.h"
 
 Sensors::Sensors(DisplayState* i_displayState) {
     displayState = i_displayState;
@@ -16,6 +15,8 @@ Sensors::Sensors(DisplayState* i_displayState) {
 void Sensors::setup() {
     pinMode(JSN_ECHO_PIN, INPUT);
     pinMode(JSN_TRIG_PIN, OUTPUT);
+
+    configTime(TZ_OFFSET, 3600, NTP_SERVER);
 
     bool bmeStatus = bmeSensor.begin(0x76);
     if (!bmeStatus) {
@@ -31,6 +32,8 @@ void Sensors::setup() {
     const int prefPumpScheduleMinInterval = sensorsPreferences.getLong(K_PREF_PUMP_SCHEDULE_MIN_INTERVAL, 24 * 60 * 60 * 1000); // 24h
     const int prefPumpScheduleMaxOn = sensorsPreferences.getLong(K_PREF_PUMP_SCHEDULE_MAX_ON, 1 * 60 * 1000); // 1h
     const float prefPumpActiveLevel = sensorsPreferences.getFloat(K_PREF_PUMP_ACTIVE_LEVEL, 0.7);
+    const short prefPumpScheduleMinHour = sensorsPreferences.getShort(K_PREF_PUMP_SCHEDULE_MIN_HOUR, 13);
+    const short prefPumpScheduleMaxHour = sensorsPreferences.getShort(K_PREF_PUMP_SCHEDULE_MAX_HOUR, 19);
 
     displayState->waterEmptyDistance = prefWaterEmptyDistance;
     displayState->waterFullDistance = prefWaterFullDistance;
@@ -38,6 +41,8 @@ void Sensors::setup() {
     displayState->pumpScheduleMinInterval = prefPumpScheduleMinInterval;
     displayState->pumpScheduleMaxOn = prefPumpScheduleMaxOn;
     displayState->pumpActiveLevel = prefPumpActiveLevel;
+    displayState->pumpScheduleMinHour = prefPumpScheduleMinHour;
+    displayState->pumpScheduleMaxHour = prefPumpScheduleMaxHour;
 
     sensorsPreferences.end();
 }
@@ -85,13 +90,23 @@ void Sensors::checkWaterPumpSchedule() {
             "Checking for water level... (now: %f / targetLevel: %f / active: %s) \n",
             displayState->waterLevel, displayState->pumpActiveLevel, displayState->pumpActive ? "true" : "false"
         );
-        if (displayState->waterLevel >= displayState->pumpActiveLevel && !displayState->pumpActive) {
-            displayState->pumpActive = true;
-            displayState->lastPumpActiveTime = millis();
-            pumpButton->active = true;
-            pumpButton->callback(*pumpButton);
 
-            displayState->update();
+        if (displayState->waterLevel >= displayState->pumpActiveLevel && !displayState->pumpActive) {
+            struct tm timeInfo{};
+            if (!getLocalTime(&timeInfo)) {
+                Serial.println("Failed to get local time");
+                return;
+            }
+            if (timeInfo.tm_hour >= displayState->pumpScheduleMinHour && timeInfo.tm_hour <= displayState->pumpScheduleMaxHour) {
+                displayState->pumpActive = true;
+                displayState->lastPumpActiveTime = millis();
+                pumpButton->active = true;
+                pumpButton->callback(*pumpButton);
+
+                displayState->update();
+            } else {
+                Serial.printf(">> Pump schedule not starting because of time. now is %d hours and range is %d<>%d\n", timeInfo.tm_hour, displayState->pumpScheduleMinHour, displayState->pumpScheduleMaxHour);
+            }
         }
     } else if ((displayState->waterLevel <= 0.2 && displayState->pumpActive) || millis() - displayState->lastPumpActiveTime > displayState->pumpScheduleMaxOn) {
         displayState->pumpActive = false;

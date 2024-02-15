@@ -3,7 +3,7 @@
 #include <TFT_eSPI.h>
 #include "network-assets.h"
 
-#define FADED_PWM 30
+#define FADED_PWM 25
 #define ACTIVE_PWM 220
 #define LED_PIN 19
 #define LED_PIN_CHANNEL 0
@@ -125,7 +125,7 @@ void Display::renderNetworkState() {
     auto networkState = state->networkState;
 
     // pump active
-    tft.fillCircle(6 + 24 + 20 / 2, 6 + 20 / 2, 8, state->pumpScheduleActive ? TFT_GREEN : TFT_RED);
+    tft.fillCircle(6 + 24 + 20 / 2, 6 + 20 / 2, 6, state->pumpScheduleActive ? TFT_GREEN : TFT_RED);
 
    if (networkState.state == NET_STATE_AP_CONNECT) {
        auto apData = state->networkState;

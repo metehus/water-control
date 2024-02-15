@@ -33,6 +33,8 @@ public:
     long pumpScheduleMinInterval = 24 * 60 * 60 * 1000; // 24h
     long pumpScheduleMaxOn = 1 * 60 * 1000; // 1h
     float pumpActiveLevel = 0.7;
+    short pumpScheduleMinHour = 15;
+    short pumpScheduleMaxHour = 19;
 
     long lastPumpActiveTime = 0;
     bool pumpActive = false;
